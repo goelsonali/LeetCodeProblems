@@ -23,19 +23,25 @@ public class DuplicateNumber {
     //d. increment the fast pointer + 1 until fast pointer = length of the array
 
     public static int getDuplicateUSingPointer(int[] numbers) {
-        int fastPointer;
-        int result=0;
-        for(int slowPointer = 0; slowPointer< numbers.length; slowPointer++ ) {
-            fastPointer = slowPointer+1;
-            while(slowPointer !=fastPointer && fastPointer!=numbers.length){
-                if(numbers[slowPointer] == numbers[fastPointer]){
-                    result = numbers[slowPointer];
-                }
-                fastPointer+=1;
-            }
+        // Initialize slow and fast pointers
+        int slow = numbers[0];
+        int fast = numbers[0];
+
+        // Phase 1: Find intersection point inside the cycle
+        do {
+            slow = numbers[slow];
+            fast = numbers[numbers[fast]];
+        } while (slow != fast);
+
+        // Phase 2: Find the entrance to the cycle (duplicate number)
+        slow = numbers[0];
+        while (slow != fast) {
+            slow = numbers[slow];
+            fast = numbers[fast];
         }
 
-        return result;
+        // Both pointers meet at the duplicate number
+        return slow;
     }
 
     public static int findDuplicate(int[] nums) {
