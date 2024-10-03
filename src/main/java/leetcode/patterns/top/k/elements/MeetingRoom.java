@@ -11,6 +11,8 @@ package leetcode.patterns.top.k.elements;
 //Meeting2 : [5,10]
 //Meeting3 : [15,20]
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 //so Meeting 1 will overlap with meeting 2 & 3 - definetly needs MR1 room
@@ -26,6 +28,7 @@ public class MeetingRoom {
         if(meetingTimes == null) {
             return 0;
         }
+        Arrays.sort(meetingTimes, Comparator.comparingInt(a-> a[0]));
         PriorityQueue<Integer> heap = new PriorityQueue<>();
         for(int i = 0; i<meetingTimes.length; i++){
             heap.add(meetingTimes[i][1]);
@@ -39,8 +42,8 @@ public class MeetingRoom {
     public static void main(String[] args) {
         int[][] in1 = new int[][]{
                 {0, 30},
-                {5, 10},
-                {15, 20}};
+                {15, 20},
+                {5, 10}};
         int result = getMeetingRoomCount(in1);
         System.out.println("No. of Rooms - " + result);
 
