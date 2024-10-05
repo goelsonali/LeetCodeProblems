@@ -42,19 +42,25 @@ public class RotatedSortedArray {
     }
 
     public static int modifiedSearch(int[] nums, int target) {
-        int mid = nums.length/2;
         int start = 0;
         int end = nums.length-1;
 
         while(start<=end) {
+            int mid = (start + end) / 2;
             if(nums[mid] == target) {
                 return mid;
-            } else if (nums[start]< nums[mid] && nums[mid] > nums[end] && target < nums[start] ) {//left side rotated
-                start = mid+1;
-                mid = (start+end)/2;
+            } else if (nums[start]<= nums[mid]) {
+                if(nums[start] <= target && target < nums[mid]) {//left side rotated
+                    end = mid -1;
+               } else {
+                    start = mid+1;
+                }
             } else {
-                end = mid-1;
-                mid = (start + end) / 2;
+                if (nums[mid] < target && target <= nums[end]) {
+                    start = mid + 1;
+                } else {
+                    end = mid - 1;
+                }
             }
         }
         return -1;
@@ -62,7 +68,7 @@ public class RotatedSortedArray {
 
     public static void main(String[] args) {
         int[] input = new int[]{4,5,6,7,0,1,2};
-        int target = 8;
+        int target = 0;
         int result = modifiedSearch(input,target);
         System.out.println("For target : " + target + " in array is at position : " + result);
     }
