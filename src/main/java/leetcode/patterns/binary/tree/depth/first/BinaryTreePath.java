@@ -1,4 +1,4 @@
-package leetcode.patterns.binary.tree.traversal;
+package leetcode.patterns.binary.tree.depth.first;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +45,7 @@ public class BinaryTreePath {
   }
 
   public static void main(String[] args) {
-     TreeNode root = new TreeNode(1,new TreeNode(2,null,new TreeNode(5,null,null)),new TreeNode(3,null,null));
+     TreeNode root = new TreeNode(1,new TreeNode(2,null,new TreeNode(5)),new TreeNode(3,null,null));
      List<String> result = binaryTreePaths(root);
       for (String outputOrder: result) {
           System.out.println(outputOrder);
@@ -56,7 +56,6 @@ static class TreeNode {
   int val;
   TreeNode left;
   TreeNode right;
-  TreeNode() {}
   TreeNode(int val) { this.val = val; }
   TreeNode(int val, TreeNode left, TreeNode right) {
       this.val = val;
