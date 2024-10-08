@@ -2,6 +2,7 @@ package leetcode.patterns.binary.tree.traversal;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 // 144. Binary Tree Preorder Traversal
 //Given the root of a binary tree, return the preorder traversal of its nodes' values.
@@ -13,12 +14,16 @@ public class BinaryTreePreOrder {
     //Preorder traversal is - root, left, right
     public static List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> list = new ArrayList<>();
-        while (root != null) {
-            list.add(root.val);
-            if(root.left !=null){
-                root = root.left;
-            } else {
-                root = root.right;
+        Stack<TreeNode> stack = new Stack<>();
+        while (root != null ||!stack.isEmpty()) {
+            if(root!=null)
+            {
+                list.add(root.val);
+                stack.push(root);
+                root=root.left;
+            } else{
+                root=stack.pop();
+                root=root.right;
             }
         }
         return list;
