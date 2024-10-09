@@ -18,11 +18,10 @@ import java.util.Stack;
 //Output: [1,1,0]
 public class DailyTemp {
     //using monotonicstack algo
-    //1. Push the 1st element of the array to the stack.
-    //2. Iterating the array of the input array.
-    //3. Keep adding the element to the stack until the condition is met ( eg - when the next high number is available)
+    //1. Iterating the array of the input array.
+    //2. Keep adding the element's index to the stack until the condition is met ( eg - when the next high number is available)
     //4. if the highest number at the nth position then, pop the element from the stack
-    // and update the value = 1 on that element's position in the array
+    // and update the relevant value on that element's position in the array
 
     public static int[] dailyTemperatures(int[] temperatures){
         int[] result = new int[temperatures.length];
