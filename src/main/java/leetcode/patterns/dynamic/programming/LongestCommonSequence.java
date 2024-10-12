@@ -18,4 +18,29 @@ package leetcode.patterns.dynamic.programming;
 //Output: 0
 //Explanation: There is no such common subsequence, so the result is 0.
 public class LongestCommonSequence {
+
+    public static int longestCommonSubsequence(String text1, String text2) {
+        char[] x = text1.toCharArray();
+        char[] y = text2.toCharArray();
+        int[][] c = new int[x.length+1][y.length+1];
+
+
+        for(int i = 1; i< x.length; i++) {
+            for(int j = 1; j <y.length; j++){
+                if(x[i-1] == y[j-1]) {
+                    c[i][j] = 1 + c[i-1][j-1];
+                }
+                else {
+                    c[i][j] = Math.max(c[i][j-1],c[i-1][j]);
+                }
+            }
+        }
+
+        return c[x.length][y.length];
+
+    }
+
+    public static void main(String[] args){
+        int result = longestCommonSubsequence("abcde","ace");
+    }
 }
