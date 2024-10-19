@@ -3,6 +3,7 @@ package leetcode.patterns.two.pointer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 //15. 3Sum
 //Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]]
@@ -18,30 +19,30 @@ import java.util.List;
 //Notice that the order of the output and the order of the triplets does not matter.
 public class ThreeSum {
     //2 pointer algo
-    // create 3 pointer
-    //a. pointer1 = 1st element
-    //b. pointer2 = 2nd element
-    //c. pointer3 = 3rd element
+    // sort the array
+
 
     public static List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
         for(int i = 0; i< nums.length; i++){
             int pointer1 = i;
-            int pointer2 = i;
-            int pointer3 = i;
-            while(pointer3 != nums.length -1) {
-                pointer2++;
-                pointer3 = pointer2+1;
+            int pointer2 = pointer1+1;
+            int pointer3 = pointer2+1;
+            while(pointer3 < nums.length) {
                 if(nums[pointer1] + nums[pointer2] + nums[pointer3] == 0){
                     result.add(List.of(Integer.valueOf(nums[pointer1]),Integer.valueOf(nums[pointer2]), Integer.valueOf(nums[pointer3])));
                 }
+                pointer2++;
+                pointer3 = pointer2+1;
             }
         }
-        return result;
+        return result.stream().distinct().collect(Collectors.toList());
     }
 
     public static void main(String[] args) {
-        //int nums = new int(){-1,0,1,2,-1,-4};
+        int[] nums = new int[]{-1,0,1,2,-1,-4};
+        List<List<Integer>> result = threeSum(nums);
+
 
     }
 }
