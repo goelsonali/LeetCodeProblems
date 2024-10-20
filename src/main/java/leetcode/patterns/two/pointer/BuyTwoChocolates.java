@@ -16,6 +16,10 @@ package leetcode.patterns.two.pointer;
 //Output: 3
 //Explanation: You cannot buy 2 chocolates without going in debt, so we return 3.
 public class BuyTwoChocolates {
+    //Sort the array
+    //left pointer 1st element of the array
+    //right pointer last element of the array
+    //Sum = prices[left\ + prices[right] , if sum < money , increment left else right.
 
     public static int buyChoco(int[] prices, int money) {
         return 0;
