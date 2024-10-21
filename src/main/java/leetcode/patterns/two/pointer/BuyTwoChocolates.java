@@ -1,5 +1,7 @@
 package leetcode.patterns.two.pointer;
 
+import java.util.Arrays;
+
 //2706. Buy Two Chocolates
 //You are given an integer array prices representing the prices of various chocolates in a store.
 // You are also given a single integer money, which represents your initial amount of money.
@@ -17,11 +19,22 @@ package leetcode.patterns.two.pointer;
 //Explanation: You cannot buy 2 chocolates without going in debt, so we return 3.
 public class BuyTwoChocolates {
     //Sort the array
-    //left pointer 1st element of the array
-    //right pointer last element of the array
-    //Sum = prices[left\ + prices[right] , if sum < money , increment left else right.
 
     public static int buyChoco(int[] prices, int money) {
-        return 0;
+        Arrays.sort(prices);
+        int cost = prices[0] + prices[1];
+        if(money<cost){
+            return money;
+        }else{
+            return money-cost;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] input1 = new int[]{98,54,6,34,66,63,52,39};
+        int target = 62;
+        int result = buyChoco(input1, target);
+        System.out.println("Balance - " + result);
+
     }
 }
