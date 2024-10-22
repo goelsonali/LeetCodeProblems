@@ -15,6 +15,9 @@ package leetcode.patterns.two.pointer;
 public class ThreeSumClosest {
 
     public static int threeSumClosest(int[] nums, int target) {
+        int sum = 0;
+
+
         return 0;
     }
 }
