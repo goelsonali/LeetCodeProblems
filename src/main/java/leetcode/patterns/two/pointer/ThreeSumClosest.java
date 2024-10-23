@@ -1,5 +1,8 @@
 package leetcode.patterns.two.pointer;
 
+import java.util.Arrays;
+import java.util.List;
+
 //16. 3Sum Closest
 //Given an integer array nums of length n and an integer target, find three integers in nums such that the sum is closest to target.
 //
@@ -15,9 +18,46 @@ package leetcode.patterns.two.pointer;
 public class ThreeSumClosest {
 
     public static int threeSumClosest(int[] nums, int target) {
-        int sum = 0;
+        int closestSum = Integer.MAX_VALUE;
+        Arrays.sort(nums);
+        for(int i=0;i<nums.length-2;i++)
+        {
+            int left = i+1;
+            int right = nums.length-1;
+            while(left<right)
+            {
+                int currentSum = nums[i] + nums[left] + nums[right];
+
+                if(Math.abs(currentSum - target) < Math.abs(closestSum - target))
+                {
+                    closestSum = currentSum;
+                }
+
+                if(currentSum<target)
+                {
+                    left++;
+                }
+
+                else if(currentSum>target){
+                    right--;
+                }
+
+                else{
+                    return currentSum;
+                }
 
 
-        return 0;
+            }
+        }
+
+        return closestSum;
+
+    }
+
+    public static void main(String[] args) {
+        int[] nums = new int[]{-1,2,1,-4};
+        int result = threeSumClosest(nums, 1);
+        System.out.println("Closest sum is: " + result);
+
     }
 }
