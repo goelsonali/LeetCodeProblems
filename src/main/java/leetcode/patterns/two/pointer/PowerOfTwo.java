@@ -15,9 +15,30 @@ package leetcode.patterns.two.pointer;
 
 //Input: n = 3
 //Output: false
+//Constraints: -2pow(31) <= n <= 2pow(31) - 1
 public class PowerOfTwo {
 
     public static boolean isPowerOfTwo(int n) {
+        for (int i = 0; i < 31; i++) {
+            int ans = (int) Math.pow(2, i);
+            if (ans == n) {
+                return true;
+            }
+        }
         return false;
+    }
+
+    public static void main(String[] args) {
+        int input1 = 1;
+        boolean result = isPowerOfTwo(input1);
+        System.out.println("Result for the input = " + input1 + " is : " + result);
+        int input2 = 16;
+        result = isPowerOfTwo(input2);
+
+        System.out.println("Result for the input = " + input2 + " is : " + result);
+        int input3 = 3;
+        result = isPowerOfTwo(input3);
+
+        System.out.println("Result for the input = " + input3 + " is : " + result);
     }
 }
